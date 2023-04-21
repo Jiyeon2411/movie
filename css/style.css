@@ -63,7 +63,7 @@ main {
 .content {
   margin: 0;
   padding: 0;
-  height: 500px;
+  height: 600px;
 }
 
 .content > div {
@@ -72,8 +72,20 @@ main {
 }
 
 .content > div > div:nth-child(1) {
-  height: 350px;
-  width: 250px;
+  height: 450px;
+  width: 300px;
 }
 
+.content > div > div:nth-child(1) > img {
+  height: 450px;
+  width: 300px;
+}
+
+.content > div > div:nth-child(2) {
+  display: flex;
+}
+
+.content > div > div:nth-child(2) > div:nth-child(1) {
+  justify-content: center;
+}
 /* 푸터 */
