@@ -82,10 +82,16 @@ main {
 }
 
 .content > div > div:nth-child(2) {
+  height: 200px;
+  width: 300px;
   display: flex;
+  justify-content: center;
 }
 
 .content > div > div:nth-child(2) > div:nth-child(1) {
+  height: 200px;
+  width: 300px;
+  display: flex;
   justify-content: center;
 }
 /* 푸터 */
