@@ -22,23 +22,47 @@
         </div>
         <div class="content">
           <div>
-            <div>
-              <img />
-            </div>
+            <div class="img" style="height: 450px; width: 300px"></div>
             <div>
               <div>
-                <h1>더 퍼스트 슬램덩크</h1>
-                <span>개봉일</span>
+                <h1 class="title" style="font-size: 40px"></h1>
+                <h2 style="font-size: 25px">개봉일</h2>
+                <span
+                  class="date"
+                  style="margin-top: 20px; font-size: 20px; height: 100px"
+                >
+                </span>
               </div>
               <div>
-                <h2>개요</h2>
-                <span>영화 내용</span>
+                <h2 style="font-size: 25px">개요</h2>
+                <span
+                  class="content"
+                  style="font-size: 20px; height: 100px; width: 1050px"
+                ></span>
+                <h2 style="font-size: 25px">감독</h2>
+                <span style="font-size: 20px; height: 50px"
+                  >Takehiko Inoue
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <div></div>
-        <div></div>
+        <div class="content2">
+          <div>
+            <h2 style="font-size: 25px">장르</h2>
+            <span class="genre" style="font-size: 20px"></span>
+          </div>
+          <div>
+            <h2 style="font-size: 25px">제작사</h2>
+            <span class="company" style="font-size: 20px"></span>
+          </div>
+        </div>
+        <div class="content3">
+          <div>
+            <h2 style="font-size: 25px">평점</h2>
+            <span class="score" style="font-size: 20px"></span>
+          </div>
+        </div>
       </main>
 
       <footer></footer>
@@ -48,39 +72,51 @@
 
     <script>
       const movieURL =
-        "https://api.themoviedb.org/3/movie/popular?api_key=35673e278099ede49183295940b950c5&language=ko-KR&page=1&region=KR";
+        "https://api.themoviedb.org/3/movie/783675?api_key=159f2c588b7f854752d419211bdea484&language=ko-KR"
       $.ajax({
         type: "GET",
         url: movieURL,
         dataType: "json",
         async: false,
         success: function (data) {
-          console.log("전체 data:", data);
+          console.log("전체 data:", data)
+          $(".title").append(data.title)
+          $(".date").append(data.release_date)
+          $(".content").append(data.overview)
+          $(".genre").append(data.genres[{ name }])
+          $(".company").append(data.name)
+          $(".score").append(data.vote_average)
 
-          const results = data.results;
-          console.log("영화 목록", results);
+          let imgURL = "https://image.tmdb.org/t/p/w500" + data.poster_path
 
-          for (const result of results) {
-            console.log(result);
-            console.log("영화제목: ", result.title);
-            console.log("영화상세설명: ", result.overview);
-            console.log("평점: ", result.vote_average);
-            console.log("포스터: ", result.poster_path);
+          $(".img").append(
+            `<a href="./detail.html?id=${data.id}"><img src="${imgURL}"></a>`
+          )
 
-            let imgURL = "https://image.tmdb.org/t/p/w500" + result.poster_path;
+          /*const results = data.results
+                console.log("영화 목록", results)
 
-            $(".images").append(
-              `<a href="./detail.html?id=${result.id}"><img src="${imgURL}"></a>`
-            );
-            $(".images").append(`${result.title}`);
-          }
+                for (const result of results) {
+                  console.log(result)
+                  console.log("영화제목: ", result.title)
+                  console.log("영화상세설명: ", result.overview)
+                  console.log("평점: ", result.vote_average)
+                  console.log("포스터: ", result.poster_path)
+
+                  let imgURL = "https://image.tmdb.org/t/p/w500" + result.poster_path
+
+                  $(".images").append(
+                    `<a href="./detail.html?id=${result.id}"><img src="${imgURL}"></a>`
+                  )
+                  $(".images").append(`${result.title}`)
+                }*/
         },
         error: function (request, status, error) {
-          console.log("code:" + request.status);
-          console.log("message:" + request.responseText);
-          console.log("error:" + error);
+          console.log("code:" + request.status)
+          console.log("message:" + request.responseText)
+          console.log("error:" + error)
         },
-      });
+      })
     </script>
   </body>
 </html>
