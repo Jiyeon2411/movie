@@ -39,7 +39,7 @@ header {
 /* 메인 */
 
 main {
-  width: 1200px;
+  width: 2000px;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -68,9 +68,16 @@ main {
 }
 
 .content > div {
+  height: 750px;
   position: relative;
-  padding: 70px 0 60px 0;
+  padding: 50px 0 50px 50px;
   display: flex;
+  background: linear-gradient(
+    to bottom right,
+    rgba(220.5, 178.5, 157.5, 1),
+    rgba(220.5, 178.5, 157.5, 0.84)
+  );
+  border-radius: 10px;
 }
 
 .content > div > div:nth-child(1) {
@@ -130,7 +137,7 @@ main {
 .content3 {
   height: 100px;
   width: 1170px;
-  margin-top: 250px;
+  margin-top: 50px;
   margin-left: 30px;
   display: flex;
 }

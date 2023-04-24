@@ -36,7 +36,7 @@
               <div>
                 <h2 style="font-size: 25px">개요</h2>
                 <span
-                  class="content"
+                  class="content_content"
                   style="font-size: 20px; height: 100px; width: 1050px"
                 ></span>
                 <h2 style="font-size: 25px">감독</h2>
@@ -72,26 +72,40 @@
 
     <script>
       const movieURL =
-        "https://api.themoviedb.org/3/movie/783675?api_key=159f2c588b7f854752d419211bdea484&language=ko-KR"
+        "https://api.themoviedb.org/3/movie/783675?api_key=159f2c588b7f854752d419211bdea484&language=ko-KR";
+
       $.ajax({
         type: "GET",
         url: movieURL,
         dataType: "json",
         async: false,
         success: function (data) {
-          console.log("전체 data:", data)
-          $(".title").append(data.title)
-          $(".date").append(data.release_date)
-          $(".content").append(data.overview)
-          $(".genre").append(data.genres[{ name }])
-          $(".company").append(data.name)
-          $(".score").append(data.vote_average)
+          const genres = data.genres;
+          let i = 0;
+          for (const genre of genres) {
+            let name = genre.name;
+            console.log(name);
+            if (i <= 1) {
+              $(".genre").append(`<span>${name}, </span>`);
+            } else {
+              $(".genre").append(`<span>${name}</span>`);
+            }
+            i++;
+          }
 
-          let imgURL = "https://image.tmdb.org/t/p/w500" + data.poster_path
+          console.log("전체 data:", data);
+          $(".title").append(data.title);
+          $(".date").append(data.release_date);
+          $(".content_content").append(data.overview);
+          // $(".genre").append(data.genres[0].name);
+          $(".company").append(data.production_companies[0].name);
+          $(".score").append(data.vote_average);
+
+          let imgURL = "https://image.tmdb.org/t/p/w500" + data.poster_path;
 
           $(".img").append(
             `<a href="./detail.html?id=${data.id}"><img src="${imgURL}"></a>`
-          )
+          );
 
           /*const results = data.results
                 console.log("영화 목록", results)
@@ -112,11 +126,11 @@
                 }*/
         },
         error: function (request, status, error) {
-          console.log("code:" + request.status)
-          console.log("message:" + request.responseText)
-          console.log("error:" + error)
+          console.log("code:" + request.status);
+          console.log("message:" + request.responseText);
+          console.log("error:" + error);
         },
-      })
+      });
     </script>
   </body>
 </html>
