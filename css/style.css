@@ -1,73 +1,60 @@
 @charset "utf-8";
-
 /*초기화 태그*/
-
 body {
   margin: 0;
   padding: 0;
   font-size: 0.9em !important;
 }
-
 ul {
   list-style: none;
   margin: 0 !important;
   padding: 0 !important;
 }
-
 a {
   color: black !important;
   text-decoration: none !important;
 }
-
 p {
   margin: 0 !important;
 }
-
 .wrap {
   overflow: hidden;
   min-width: 1200px;
 }
-
 /* 헤더 */
-
 header {
   height: 75px;
   position: relative;
   display: flex;
 }
-
 /* 메인 */
-
 main {
-  width: 2000px;
+  width: 1700px;
   margin: 0 auto;
   overflow: hidden;
+  justify-content: center;
 }
-
 .menu {
   height: 100px;
   display: flex;
   justify-content: center;
 }
-
 .menu > ul {
   display: flex;
 }
-
 .menu > ul > li {
   padding: 0 60px;
   font-size: 40px;
   font-weight: bold;
 }
-
 .content {
   margin: 0;
   padding: 0;
   height: 600px;
   display: flex;
 }
-
 .content > div {
+  width: 1600px;
   height: 750px;
   position: relative;
   padding: 50px 0 50px 50px;
@@ -79,18 +66,15 @@ main {
   );
   border-radius: 10px;
 }
-
 .content > div > div:nth-child(1) {
   height: 450px;
   width: 300px;
   display: flex;
 }
-
 .content > div > .img {
   height: 450px;
   width: 300px;
 }
-
 .content > div > div:nth-child(2) {
   height: 300px;
   width: 1200px;
@@ -98,7 +82,6 @@ main {
   justify-content: center;
   padding-left: 250px;
 }
-
 .content > div > div:nth-child(2) > div:nth-child(1) {
   height: 300px;
   width: 1200px;
@@ -106,7 +89,6 @@ main {
   justify-content: center;
   padding-top: 10px;
 }
-
 .content > div > div:nth-child(2) > div:nth-child(2) {
   height: 300px;
   width: 1200px;
@@ -114,7 +96,6 @@ main {
   justify-content: center;
   padding-top: 10px;
 }
-
 .content2 {
   height: 100px;
   width: 1170px;
@@ -122,18 +103,15 @@ main {
   margin-left: 30px;
   display: flex;
 }
-
 .content2 > div {
   height: 100px;
   width: 585px;
 }
-
 .content2 > div:nth-child(2) {
   height: 100px;
   width: 585px;
   margin-left: 585px;
 }
-
 .content3 {
   height: 100px;
   width: 1170px;
@@ -141,15 +119,29 @@ main {
   margin-left: 30px;
   display: flex;
 }
-
 .content3 > div {
   height: 100px;
   width: 585px;
 }
-
 .content3 > div:nth-child(2) {
   height: 100px;
   width: 585px;
   margin-left: 585px;
 }
+.content4 {
+  height: 760px;
+  width: 1170px;
+  margin-top: 50px;
+  margin-left: 30px;
+  display: inline-block;
+}
+
+.content4 > ul {
+  display: flex;
+}
+
+.content4 > ul > li {
+  margin-left: 30px;
+}
+
 /* 푸터 */

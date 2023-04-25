@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>상세 페이지</title>
+    <title>더 퍼스트 슬램덩크</title>
+
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="wrap">
       <header></header>
-
       <main>
         <div class="menu">
           <ul>
@@ -63,62 +63,55 @@
             <span class="score" style="font-size: 20px"></span>
           </div>
         </div>
+        <div class="content4">
+          <h2 style="font-size: 25px">비슷한 영화</h2>
+          <ul id="movie"></ul>
+        </div>
       </main>
-
       <footer></footer>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
     <script>
       const movieURL =
-        "https://api.themoviedb.org/3/movie/783675?api_key=159f2c588b7f854752d419211bdea484&language=ko-KR";
-
+        "https://api.themoviedb.org/3/movie/783675?api_key=159f2c588b7f854752d419211bdea484&language=ko-KR"
       $.ajax({
         type: "GET",
         url: movieURL,
         dataType: "json",
         async: false,
         success: function (data) {
-          const genres = data.genres;
-          let i = 0;
+          const genres = data.genres
+          let i = 0
           for (const genre of genres) {
-            let name = genre.name;
-            console.log(name);
+            let name = genre.name
+            console.log(name)
             if (i <= 1) {
-              $(".genre").append(`<span>${name}, </span>`);
+              $(".genre").append(`<span>${name}, </span>`)
             } else {
-              $(".genre").append(`<span>${name}</span>`);
+              $(".genre").append(`<span>${name}</span>`)
             }
-            i++;
+            i++
           }
-
-          console.log("전체 data:", data);
-          $(".title").append(data.title);
-          $(".date").append(data.release_date);
-          $(".content_content").append(data.overview);
+          console.log("전체 data:", data)
+          $(".title").append(data.title)
+          $(".date").append(data.release_date)
+          $(".content_content").append(data.overview)
           // $(".genre").append(data.genres[0].name);
-          $(".company").append(data.production_companies[0].name);
-          $(".score").append(data.vote_average);
-
-          let imgURL = "https://image.tmdb.org/t/p/w500" + data.poster_path;
-
+          $(".company").append(data.production_companies[0].name)
+          $(".score").append(data.vote_average)
+          let imgURL = "https://image.tmdb.org/t/p/w500" + data.poster_path
           $(".img").append(
             `<a href="./detail.html?id=${data.id}"><img src="${imgURL}"></a>`
-          );
-
+          )
           /*const results = data.results
                 console.log("영화 목록", results)
-
                 for (const result of results) {
                   console.log(result)
                   console.log("영화제목: ", result.title)
                   console.log("영화상세설명: ", result.overview)
                   console.log("평점: ", result.vote_average)
                   console.log("포스터: ", result.poster_path)
-
                   let imgURL = "https://image.tmdb.org/t/p/w500" + result.poster_path
-
                   $(".images").append(
                     `<a href="./detail.html?id=${result.id}"><img src="${imgURL}"></a>`
                   )
@@ -126,11 +119,48 @@
                 }*/
         },
         error: function (request, status, error) {
-          console.log("code:" + request.status);
-          console.log("message:" + request.responseText);
-          console.log("error:" + error);
+          console.log("code:" + request.status)
+          console.log("message:" + request.responseText)
+          console.log("error:" + error)
         },
-      });
+      })
+    </script>
+    <script>
+      const movieURL2 =
+        "https://api.themoviedb.org/3/movie/783675/similar?api_key=159f2c588b7f854752d419211bdea484&language=ko-KR&page=9"
+      $.ajax({
+        type: "GET",
+        url: movieURL2,
+        dataType: "json",
+        async: false,
+        success: function (data) {
+          const movies = data.results
+          console.log("전체 data:", data)
+          let j = 0
+          for (const movie of movies) {
+            j++
+            let poster = movie.poster_path
+            let title__title = movie.title
+            let address = "https://image.tmdb.org/t/p/w500" + movie.poster_path
+            if (j == 6) {
+              break
+            }
+            $("#movie").append(`<li>
+                    <div>
+                      <img src="${address}" style="height:380px; width:280px; border-radius:10px">
+                      <div>
+                        <strong class="movie1__title" style="font-size:20px">${title__title}</strong>
+                      </div>
+                    </div>
+                  </li>`)
+          }
+        },
+        error: function (request, status, error) {
+          console.log("code:" + request.status)
+          console.log("message:" + request.responseText)
+          console.log("error:" + error)
+        },
+      })
     </script>
   </body>
 </html>
