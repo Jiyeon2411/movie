@@ -63,6 +63,10 @@
             <span class="score" style="font-size: 20px"></span>
           </div>
         </div>
+        <div class="content4">
+          <h2 style="font-size: 25px">관련 영화</h2>
+          <ul id="movie"></ul>
+        </div>
       </main>
 
       <footer></footer>
@@ -124,6 +128,48 @@
                   )
                   $(".images").append(`${result.title}`)
                 }*/
+        },
+        error: function (request, status, error) {
+          console.log("code:" + request.status);
+          console.log("message:" + request.responseText);
+          console.log("error:" + error);
+        },
+      });
+    </script>
+
+    <script>
+      const movieURL2 =
+        "https://api.themoviedb.org/3/movie/783675/similar?api_key=159f2c588b7f854752d419211bdea484&language=ko-KR&page=1";
+
+      $.ajax({
+        type: "GET",
+        url: movieURL2,
+        dataType: "json",
+        async: false,
+        success: function (data) {
+          const movies = data.results;
+          console.log("전체 data:", data);
+
+          let j = 0;
+
+          for (const movie of movies) {
+            j++;
+            let poster = movie.poster_path;
+            let title__title = movie.title;
+            let address = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+            if (j == 6) {
+              break;
+            }
+
+            $("#movie").append(`<li>
+              <div>
+                <img src="${address}">
+                <div>
+                  <strong class="movie1__title">${title__title}</strong>
+                </div>
+              </div>
+            </li>`);
+          }
         },
         error: function (request, status, error) {
           console.log("code:" + request.status);

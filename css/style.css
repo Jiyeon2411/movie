@@ -152,4 +152,13 @@ main {
   width: 585px;
   margin-left: 585px;
 }
+
+.content4 {
+  height: 100px;
+  width: 1170px;
+  margin-top: 50px;
+  margin-left: 30px;
+  display: flex;
+}
+
 /* 푸터 */
