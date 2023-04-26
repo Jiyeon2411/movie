@@ -58,7 +58,7 @@ $.ajax({
       $("#movie")
         .append(`<div class="col" style="margin-left:50px; margin-top:30px">
     <div class="card" style="height:450px; width:280px; border-radius:10px">
-      <img src="${address}" style="height:380px; width:280px; border-radius:10px"></img>
+      <img src="${address}" style="height:380px; width:280px; border-radius:10px 10px 0 0"></img>
       <div class="card-body">
         <h5 class="movie1__title" style="font-size:20px; text-align:center; margin-top:10px">${title__title}</h5>
         
@@ -67,15 +67,6 @@ $.ajax({
   </div>`)
     }
   },
-
-  /*$("#movie").append(`<li>
-                    <div>
-                      <img src="${address}" style="height:380px; width:280px; border-radius:10px">
-                      <div>
-                        <strong class="movie1__title" style="font-size:20px">${title__title}</strong>
-                      </div>
-                    </div>
-                  </li>`)*/
 
   error: function (request, status, error) {
     console.log("code:" + request.status)
